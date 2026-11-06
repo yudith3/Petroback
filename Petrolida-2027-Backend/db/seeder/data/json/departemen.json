@@ -1,0 +1,232 @@
+[
+  {
+    "id": "c0360c0b-e6e7-4f30-af3c-e6c7ebbdc5c9",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Physics"
+  },
+  {
+    "id": "381c6f0a-575a-4cf3-8345-fbda7a948eea",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Chemistry"
+  },
+  {
+    "id": "aca40e28-ec39-4bd0-b7b6-67cffc2ead51",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Biology"
+  },
+  {
+    "id": "85317567-52c4-4861-97da-401900bbbcee",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Mathematics"
+  },
+  {
+    "id": "46579077-f116-4e8c-b749-ce20de6dba6e",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Statistics"
+  },
+  {
+    "id": "28ee0023-11a3-4cfd-90f4-39135692de96",
+    "fakultas_id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Actuarial Science"
+  },
+  {
+    "id": "40fe5865-4813-4a74-8f88-ae8594912bd0",
+    "fakultas_id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Naval Architecture and Shipbuilding Engineering"
+  },
+  {
+    "id": "05fabfdc-ca01-4ab7-8999-8b3769837dc8",
+    "fakultas_id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Marine Engineering"
+  },
+  {
+    "id": "8884fa8b-8a28-435d-8b27-3eabe986d8f3",
+    "fakultas_id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Ocean Engineering"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-1e2f-3a4b5c6d7e8f",
+    "fakultas_id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Sea Transportation Engineering"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d1e-2f3a-4b5c6d7e8f9a",
+    "fakultas_id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Offshore Engineering"
+  },
+  {
+    "id": "e5f6a7b8-c9d1-4e2f-3a4b-5c6d7e8f9a1b",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Mechanical Engineering"
+  },
+  {
+    "id": "f6a7b8c9-d1e2-4f3a-4b5c-6d7e8f9a1b2c",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Chemical Engineering"
+  },
+  {
+    "id": "a7b8c9d1-e2f3-4a4b-5c6d-7e8f9a1b2c3d",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Engineering Physics"
+  },
+  {
+    "id": "b8c9d1e2-f3a4-4b5c-6d7e-8f9a1b2c3d4e",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Industrial and Systems Engineering"
+  },
+  {
+    "id": "c9d1e2f3-a4b5-4c6d-7e8f-9a1b2c3d4e5f",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Materials and Metallurgical Engineering"
+  },
+  {
+    "id": "11e2f3a4-b5c6-4d7e-8f9a-1b2c3d4e5f60",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Food Engineering"
+  },
+  {
+    "id": "e2f3a4b5-c6d7-4e8f-9a1b-2c3d4e5f6a7b",
+    "fakultas_id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Process Safety Engineering"
+  },
+  {
+    "id": "f3a4b5c6-d7e8-4f9a-1b2c-3d4e5f6a7b8c",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Informatics"
+  },
+  {
+    "id": "a4b5c6d7-e8f9-4a1b-2c3d-4e5f6a7b8c9d",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Information Systems"
+  },
+  {
+    "id": "b5c6d7e8-f9a1-4b2c-3d4e-5f6a7b8c9d1e",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Information Technology"
+  },
+  {
+    "id": "c6d7e8f9-a1b2-4c3d-4e5f-6a7b8c9d1e2f",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Electrical Engineering"
+  },
+  {
+    "id": "d7e8f9a1-b2c3-4d4e-5f6a-7b8c9d1e2f3a",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Computer Engineering"
+  },
+  {
+    "id": "e8f9a1b2-c3d4-4e5f-6a7b-8c9d1e2f3a4b",
+    "fakultas_id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Biomedical Engineering"
+  },
+  {
+    "id": "f9a1b2c3-d4e5-4f6a-7b8c-9d1e2f3a4b5c",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Civil Engineering"
+  },
+  {
+    "id": "21b2c3d4-e5f6-4a7b-8c9d-1e2f3a4b5c61",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Architecture"
+  },
+  {
+    "id": "32c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d72",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Environmental Engineering"
+  },
+  {
+    "id": "43d4e5f6-a7b8-4c9d-1e2f-3a4b5c6d7e83",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Urban and Regional Planning"
+  },
+  {
+    "id": "54e5f6a7-b8c9-4d1e-2f3a-4b5c6d7e8f94",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Geomatics Engineering"
+  },
+  {
+    "id": "65f6a7b8-c9d1-4e2f-3a4b-5c6d7e8f9a15",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Geophysics Engineering"
+  },
+  {
+    "id": "4f8db9be-87e8-499c-9ca0-4c2a2621ba68",
+    "fakultas_id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Minning Engineering"
+  },
+  {
+    "id": "76a7b8c9-d1e2-4f3a-4b5c-6d7e8f9a1b26",
+    "fakultas_id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Product Design"
+  },
+  {
+    "id": "87b8c9d1-e2f3-4a4b-5c6d-7e8f9a1b2c37",
+    "fakultas_id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Business Management"
+  },
+  {
+    "id": "98c9d1e2-f3a4-4b5c-6d7e-8f9a1b2c3d48",
+    "fakultas_id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Interior Design"
+  },
+  {
+    "id": "09d1e2f3-a4b5-4c6d-7e8f-9a1b2c3d4e59",
+    "fakultas_id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Visual Communication Design"
+  },
+  {
+    "id": "10e2f3a4-b5c6-4d7e-8f9a-1b2c3d4e5f6b",
+    "fakultas_id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Development Studies"
+  },
+  {
+    "id": "21f3a4b5-c6d7-4e8f-9a1b-2c3d4e5f6a7c",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Civil Infrastructure Engineering"
+  },
+  {
+    "id": "32a4b5c6-d7e8-4f9a-1b2c-3d4e5f6a7b8d",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Industrial Mechanical Engineering"
+  },
+  {
+    "id": "43b5c6d7-e8f9-4a1b-2c3d-4e5f6a7b8c9e",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Automation Electronic Engineering"
+  },
+  {
+    "id": "54c6d7e8-f9a1-4b2c-3d4e-5f6a7b8c9d1f",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Industrial Chemical Engineering"
+  },
+  {
+    "id": "65d7e8f9-a1b2-4c3d-4e5f-6a7b8c9d1e20",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Instrumentation Engineering"
+  },
+  {
+    "id": "76e8f9a1-b2c3-4d4e-5f6a-7b8c9d1e2f31",
+    "fakultas_id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Business Statistics"
+  },
+  {
+    "id": "87f9a1b2-c3d4-4e5f-6a7b-8c9d1e2f3a42",
+    "fakultas_id": "a1b2c3d4-e5f6-4a7b-8c9d-1e2f3a4b5c6d",
+    "name": "Technology Management"
+  },
+  {
+    "id": "98a1b2c3-d4e5-4f6a-7b8c-9d1e2f3a4b53",
+    "fakultas_id": "b2c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d7e",
+    "name": "Medical Technology Programme"
+  },
+  {
+    "id": "09b2c3d4-e5f6-4a7b-8c9d-1e2f3a4b5c64",
+    "fakultas_id": "b2c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d7e",
+    "name": "Academic Stage of Medical Programme"
+  },
+  {
+    "id": "10c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d75",
+    "fakultas_id": "b2c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d7e",
+    "name": "Professional Stage of Medical Programme"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "e4a2c1d3-4e8f-4b1a-9c7d-8e6f1a9b2c0d",
+    "name": "Faculty of Science and Data Analytics (F-Scientics)"
+  },
+  {
+    "id": "d1e2f3a4-b5c6-4d7e-9f8a-1b2c3d4e5f6a",
+    "name": "Faculty of Marine Technology (F-MARTECH)"
+  },
+  {
+    "id": "c9b8a7d6-1e2f-4c5d-9a8b-3e4f5a6b7d8c",
+    "name": "Faculty of Industrial Technology And Systems Engineering (F-INDSYS)"
+  },
+  {
+    "id": "a5b6c7d8-e9f0-4a1b-9c2d-3e4f5a6b7d8c",
+    "name": "Faculty of Intelligent Electrical and Informatics Technology (F-ELECTICS)"
+  },
+  {
+    "id": "b3c4d5e6-7f8a-4b9c-d1e2-3f4a5b6c7d8e",
+    "name": "Faculty of Civil, Planning, and Geo Engineering (F-CIVPLAN)"
+  },
+  {
+    "id": "e6f7a8b9-c0d1-4e2f-9b3a-4c5d6e7f8a9b",
+    "name": "Faculty of Creative Design and Digital Business (F-Creabiz)"
+  },
+  {
+    "id": "f5a4b3c2-1d2e-4f3a-8b4c-5d6e7f8a9b1c",
+    "name": "Faculty of Vocational (F-Vocation)"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-1e2f3a4b5c6d",
+    "name": "Interdisciplinary School of Management and Technology"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d1e-2f3a4b5c6d7e",
+    "name": "Faculty of Medicine and Health"
+  }
+]
