@@ -1,0 +1,24 @@
+meta {
+  name: Delete Short Link
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{BASE_URL}}/short-links/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 00000000-0000-0000-0000-000000000000
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Hapus short link. Error `SHORT_LINK_NOT_FOUND` kalau id tidak ada.
+}

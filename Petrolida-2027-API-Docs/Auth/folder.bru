@@ -1,0 +1,16 @@
+meta {
+  name: Auth
+  seq: 2
+}
+
+auth {
+  mode: inherit
+}
+
+docs {
+  Login admin dashboard.
+
+  Backend mengirim token lewat cookie `petrolida_admin_session`, bukan di body.
+  Request **Login** menyalin nilai cookie itu ke variabel `TOKEN` supaya request
+  admin lain bisa memakai `Authorization: Bearer {{TOKEN}}`.
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Get Registrant Detail
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 00000000-0000-0000-0000-000000000000
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Detail pendaftar lengkap dengan pilihan, skill, info tambahan, dan dokumen.
+}

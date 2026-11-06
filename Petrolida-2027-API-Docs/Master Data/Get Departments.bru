@@ -1,0 +1,20 @@
+meta {
+  name: Get Departments
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{BASE_URL}}/master/department
+  body: none
+  auth: none
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Daftar departemen.
+}

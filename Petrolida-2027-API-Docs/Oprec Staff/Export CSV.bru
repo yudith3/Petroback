@@ -1,0 +1,25 @@
+meta {
+  name: Export CSV
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/export/csv
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~status: 
+  ~search: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Unduh semua pendaftar sesuai filter (query sama dengan List Registrants, tanpa paginasi).
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Logout
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/auth/logout
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Menghapus cookie session. `TOKEN` di environment tidak ikut terhapus.
+}

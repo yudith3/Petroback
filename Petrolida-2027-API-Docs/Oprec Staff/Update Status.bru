@@ -1,0 +1,39 @@
+meta {
+  name: Update Status
+  type: http
+  seq: 11
+}
+
+patch {
+  url: {{BASE_URL}}/oprec-staff/:id/status
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "status": "screening_primary",
+    "rejection_target": "",
+    "accepted_division_id": null,
+    "current_subdivision_id": null
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Ubah status pendaftar.
+
+  - `status`: status tujuan.
+  - `rejection_target`: `primary`, `secondary`, atau `both` (dipakai saat menolak pilihan).
+  - `accepted_division_id`, `current_subdivision_id`: diisi saat menerima pendaftar.
+
+  Error umum: `INVALID_REGISTRANT_STATUS`, `INVALID_STATUS_TRANSITION`, `DIVISION_NOT_FOUND`.
+}

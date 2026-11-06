@@ -1,0 +1,27 @@
+meta {
+  name: Create Short Link
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/short-links
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "slug": "petro-run",
+    "destination_url": "https://example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Buat short link baru. Error `SHORT_LINK_SLUG_TAKEN` kalau slug sudah dipakai.
+}

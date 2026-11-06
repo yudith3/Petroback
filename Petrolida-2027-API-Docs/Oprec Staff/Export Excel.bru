@@ -1,0 +1,25 @@
+meta {
+  name: Export Excel
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/export/excel
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~status: 
+  ~search: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Sama seperti Export CSV, format `.xlsx`.
+}

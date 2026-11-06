@@ -1,0 +1,24 @@
+meta {
+  name: Get Faculty By ID
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{BASE_URL}}/master/faculty/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 00000000-0000-0000-0000-000000000000
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Detail satu fakultas.
+}

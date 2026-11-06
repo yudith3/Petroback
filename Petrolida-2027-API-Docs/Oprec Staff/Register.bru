@@ -1,0 +1,38 @@
+meta {
+  name: Register
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/oprec-staff
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  data: {"submission_key":"","name":"Nama Pendaftar","email":"pendaftar@example.com","nrp":"5025251000","phone_number":"081234567890","line_id":"lineid","faculty_id":"00000000-0000-0000-0000-000000000000","department_id":"00000000-0000-0000-0000-000000000000","batch":2025,"about_petrolida":"...","willing_transfer_division":true,"choices":[{"priority":1,"subdivision_id":"00000000-0000-0000-0000-000000000000","about_division":"...","reason_to_join":"...","innovation_idea":"...","previous_experience":"..."},{"priority":2,"subdivision_id":"00000000-0000-0000-0000-000000000000","about_division":"...","reason_to_join":"...","innovation_idea":"...","previous_experience":"..."}],"skills":{"english_proficiency":"good","communication_skill":"good","creativity_in_event":"good","fast_response":"good","graphic_design":"good","photography":"good","video_editing":"good","web_design":"good","operating_zoom":"good","social_media_trends":"good","design_applications":"good"},"additional_info":{"has_car_in_surabaya":false,"has_sponsor_relation":false,"has_vendor_in_surabaya":false,"has_camera":false,"has_laptop":true,"has_tablet":false,"connected_company":""},"required_document_url":"https://drive.google.com/..."}
+  ~portfolio: @file()
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Body berupa `multipart/form-data`:
+
+  | Field | Isi |
+  |---|---|
+  | `data` | JSON string data pendaftar (lihat contoh di tab Body) |
+  | `portfolio` | file PDF, opsional. Wajib untuk subdivisi di `portfolio_required_subdivisions` |
+
+  Nilai skill: `no_proficiency`, `poor`, `decent`, `good`, `very_good`.
+
+  `faculty_id`, `department_id`, dan `subdivision_id` diambil dari folder Master Data.
+  `submission_key` dipakai untuk mencegah submit ganda; cek hasilnya dengan Submission Status.
+
+  Response `201`: `registration_id` dan `status`.
+  Error umum: `REGISTRATION_CLOSED`, `REGISTRATION_EXISTS`, `SUBMISSION_KEY_CONFLICT`.
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Activity Logs
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/activity-logs
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  page_size: 20
+  ~actor_id: 
+  ~division_id: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Riwayat perubahan status pendaftar. **Khusus superadmin.**
+}

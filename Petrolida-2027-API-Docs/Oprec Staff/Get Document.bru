@@ -1,0 +1,25 @@
+meta {
+  name: Get Document
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/:id/documents/:document_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 00000000-0000-0000-0000-000000000000
+  document_id: 00000000-0000-0000-0000-000000000000
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Mengembalikan file portfolio (PDF). `document_id` ada di `documents` pada detail pendaftar.
+}

@@ -1,0 +1,32 @@
+meta {
+  name: Lookup
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/announcements/:stage
+  body: json
+  auth: none
+}
+
+params:path {
+  stage: staff
+}
+
+body:json {
+  {
+    "nrp": "5025251000"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Cek hasil seleksi berdasarkan NRP. `stage`: `staff` atau `interview`.
+
+  Error umum: `ANNOUNCEMENT_CLOSED`, `ANNOUNCEMENT_PENDING`, `ANNOUNCEMENT_ON_HOLD`.
+}

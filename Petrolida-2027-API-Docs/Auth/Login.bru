@@ -1,0 +1,40 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "{{EMAIL}}",
+    "password": "{{PASSWORD}}"
+  }
+}
+
+script:post-response {
+  const cookies = [].concat(res.getHeader("set-cookie") || []);
+  const session = cookies.find((c) => c.startsWith("petrolida_admin_session="));
+  if (session) {
+    bru.setEnvVar("TOKEN", session.split(";")[0].split("=")[1]);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Isi `EMAIL` dan `PASSWORD` di environment (secret).
+
+  - Sukses: cookie `petrolida_admin_session` diset dan body berisi profil admin.
+  - `INVALID_CREDENTIALS`: email atau password salah.
+
+  Nama cookie bisa diubah lewat `AUTH_COOKIE_NAME`. Kalau berbeda, sesuaikan script.
+}

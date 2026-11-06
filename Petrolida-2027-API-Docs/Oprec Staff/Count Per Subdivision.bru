@@ -1,0 +1,20 @@
+meta {
+  name: Count Per Subdivision
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff/count/subdivision
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Jumlah pendaftar per subdivisi pilihan pertama.
+}

@@ -1,0 +1,48 @@
+meta {
+  name: List Registrants
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{BASE_URL}}/oprec-staff
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  page_size: 10
+  ~search: 
+  ~status: pending
+  ~faculty_id: 
+  ~department_id: 
+  ~division_id: 
+  ~subdivision_id: 
+  ~choice_priority: all
+  ~batch: 2025
+  ~sort_by: created_at
+  ~sort: desc
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Daftar pendaftar. Admin divisi hanya melihat pendaftar divisinya.
+
+  | Query | Keterangan |
+  |---|---|
+  | `page`, `page_size` | default 1 dan 10 (`take` = nama lama `page_size`) |
+  | `search` | nama, NRP, atau email |
+  | `status` | salah satu status pendaftar |
+  | `faculty_id`, `department_id`, `division_id`, `subdivision_id` | UUID |
+  | `choice_priority` | `1`, `2`, atau `all`; butuh `division_id` atau `subdivision_id` |
+  | `batch` | tahun angkatan |
+  | `sort_by` | `created_at`, `name`, `nrp`, `status` |
+  | `sort` | `asc` atau `desc` |
+
+  `meta` berisi `page`, `page_size`, `total_items`, `total_pages`.
+}

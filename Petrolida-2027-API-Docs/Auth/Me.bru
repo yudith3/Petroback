@@ -1,0 +1,20 @@
+meta {
+  name: Me
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BASE_URL}}/auth/me
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Mengembalikan profil admin yang sedang login (`id`, `name`, `email`, `role`, `division`).
+}

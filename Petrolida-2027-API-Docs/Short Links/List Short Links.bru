@@ -1,0 +1,20 @@
+meta {
+  name: List Short Links
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BASE_URL}}/short-links
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Daftar short link beserta `click_count`.
+}
