@@ -1,0 +1,86 @@
+name: Deploy backend staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+    inputs:
+      staff_announcement_at:
+        description: Optional staging-only staff release time (RFC3339)
+        required: false
+        type: string
+      interview_announcement_at:
+        description: Optional staging-only interview release time (RFC3339)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: petrolida-backend-staging
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Validate source
+        run: |
+          test -z "$(gofmt -l .)"
+          go vet ./...
+          go test ./...
+          python3 -m unittest discover -s deploy/tests -p 'test_staging*.py'
+      - name: Build release image
+        run: |
+          set -euo pipefail
+          docker build --pull -t "petrolida/staging-backend:${GITHUB_SHA}" .
+          docker save "petrolida/staging-backend:${GITHUB_SHA}" | gzip -1 > "${RUNNER_TEMP}/backend.tar.gz"
+      - name: Configure SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ vars.VPS_KNOWN_HOSTS }}
+        run: |
+          test -n "$VPS_SSH_KEY"
+          test -n "$VPS_KNOWN_HOSTS"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+      - name: Upload and activate release
+        env:
+          VPS_HOST: ${{ vars.VPS_HOST }}
+          STAGING_INTERVIEW_ANNOUNCEMENT_AT: ${{ inputs.interview_announcement_at }}
+          STAGING_STAFF_ANNOUNCEMENT_AT: ${{ inputs.staff_announcement_at }}
+        run: |
+          set -euo pipefail
+          # Deploy berjalan lama dan sebagian besar waktunya senyap, terutama saat
+          # pg_dump dan saat menunggu health check. Tanpa keepalive, perangkat NAT
+          # di antara runner dan VPS memutus koneksi yang menganggur, lalu ssh
+          # gagal dengan "client_loop: send disconnect: Broken pipe" exit 255
+          # walaupun deploy di server sebenarnya masih berjalan normal.
+          ssh_options=(
+            -o BatchMode=yes
+            -o ServerAliveInterval=20
+            -o ServerAliveCountMax=30
+            -o TCPKeepAlive=yes
+          )
+          scp "${ssh_options[@]}" "${RUNNER_TEMP}/backend.tar.gz" "deploy@${VPS_HOST}:/srv/petrolida-staging/incoming/backend-${GITHUB_SHA}.tar.gz"
+          scp "${ssh_options[@]}" deploy/compose.staging.yaml deploy/deploy-staging.sh deploy/backup-staging.sh deploy/set-staging-announcement.py "deploy@${VPS_HOST}:/srv/petrolida-staging/"
+          if [[ -n "$STAGING_INTERVIEW_ANNOUNCEMENT_AT" ]]; then
+            printf '%s\n' "$STAGING_INTERVIEW_ANNOUNCEMENT_AT" | ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "python3 /srv/petrolida-staging/set-staging-announcement.py"
+          fi
+          if [[ -n "$STAGING_STAFF_ANNOUNCEMENT_AT" ]]; then
+            printf '%s\n' "$STAGING_STAFF_ANNOUNCEMENT_AT" | ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "python3 /srv/petrolida-staging/set-staging-announcement.py --stage staff"
+          fi
+          ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "chmod 700 /srv/petrolida-staging/deploy-staging.sh /srv/petrolida-staging/backup-staging.sh"
+          ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "/srv/petrolida-staging/deploy-staging.sh backend ${GITHUB_SHA}"

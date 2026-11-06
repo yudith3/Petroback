@@ -1,0 +1,94 @@
+name: Backend checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, staging, prod]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: petrolida_2027
+        ports:
+          - 54327:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d petrolida_2027"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: "54327"
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: petrolida_2027
+      DB_SSL_MODE: disable
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Check formatting
+        run: test -z "$(gofmt -l .)"
+
+      - name: Run static analysis
+        run: go vet ./...
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Build service
+        run: go build ./...
+      - name: Test staging configuration helpers
+        run: |
+          python3 -m unittest discover -s deploy/tests -p 'test_staging*.py'
+          bash -n deploy/run-staging-petrorun.sh
+
+      - name: Validate production image layout
+        run: |
+          set -euo pipefail
+          docker build -t petrolida/backend:ci .
+          test "$(docker image inspect --format '{{.Config.WorkingDir}}' petrolida/backend:ci)" = "/"
+          container_id="$(docker create petrolida/backend:ci)"
+          trap 'docker rm -f "$container_id" >/dev/null 2>&1 || true' EXIT
+          docker export -o "${RUNNER_TEMP}/backend-rootfs.tar" "$container_id"
+          tar -tf "${RUNNER_TEMP}/backend-rootfs.tar" > "${RUNNER_TEMP}/backend-files.txt"
+          grep -Fxq 'db/seeder/data/json/fakultas.json' "${RUNNER_TEMP}/backend-files.txt"
+
+      - name: Validate production proxy and Compose configuration
+        env:
+          DB_HOST: db.example.invalid
+          DB_USER: postgres
+          DB_PASS: ci-only
+          DB_NAME: postgres
+          POSTGRES_PASSWORD: ci-only
+          JWT_SECRET: ci-validation-secret-at-least-32-characters
+          BACKEND_TAG: ci
+          FRONTEND_TAG: ci
+          SITE_ADDRESS: petrolida.com
+          SITE_ORIGIN: https://petrolida.com
+          OPREC_REGISTRATION_START_AT: "2026-09-23T18:00:00+07:00"
+          OPREC_REGISTRATION_END_AT: "2026-10-06T18:00:00+07:00"
+        run: |
+          docker compose -f deploy/compose.prod.yaml config --quiet
+          docker run --rm -e SITE_ADDRESS=petrolida.com \
+            -v "$PWD/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+            caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
+          python3 deploy/tests/verify_cache.py

@@ -1,0 +1,20 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build output
+bin/
+tmp/
+dist/
+*.exe
+*.test
+coverage.out
+__pycache__/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+.gocache/

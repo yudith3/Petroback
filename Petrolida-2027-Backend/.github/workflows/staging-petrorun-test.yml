@@ -1,0 +1,79 @@
+name: Configure PetroRun staging tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Enable synthetic test settings or restore the previous PetroRun settings
+        required: true
+        type: choice
+        options: [enable, restore]
+        default: enable
+      credentials_public_key:
+        description: Optional RSA public key PEM to receive encrypted staging admin credentials
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: petrolida-staging-test-configuration
+  cancel-in-progress: false
+
+jobs:
+  configure:
+    if: github.ref == 'refs/heads/staging'
+    environment: staging
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate helper
+        run: |
+          python3 -m unittest discover -s deploy/tests -p 'test_staging_petrorun.py'
+          bash -n deploy/run-staging-petrorun.sh
+      - name: Configure SSH and optional encryption
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ vars.VPS_KNOWN_HOSTS }}
+          PUBLIC_KEY: ${{ inputs.credentials_public_key }}
+        run: |
+          set -euo pipefail
+          test -n "$VPS_SSH_KEY"
+          test -n "$VPS_KNOWN_HOSTS"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          if [[ -n "$PUBLIC_KEY" ]]; then
+            printf '%s\n' "$PUBLIC_KEY" > "${RUNNER_TEMP}/recipient.pem"
+            openssl rsa -pubin -in "${RUNNER_TEMP}/recipient.pem" -noout
+          fi
+      - name: Configure the isolated staging backend
+        env:
+          VPS_HOST: ${{ vars.VPS_HOST }}
+          MODE: ${{ inputs.mode }}
+          PUBLIC_KEY: ${{ inputs.credentials_public_key }}
+        run: |
+          set -euo pipefail
+          case "$MODE" in enable|restore) ;; *) exit 2 ;; esac
+          ssh_options=(-o BatchMode=yes -o ServerAliveInterval=20 -o ServerAliveCountMax=30)
+          scp "${ssh_options[@]}" deploy/configure-staging-petrorun.py deploy/run-staging-petrorun.sh "deploy@${VPS_HOST}:/srv/petrolida-staging/"
+          ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "bash /srv/petrolida-staging/run-staging-petrorun.sh --mode $MODE"
+          if [[ -n "$PUBLIC_KEY" ]]; then
+            # Plaintext exists only in this pipe. The private key never leaves
+            # the requester's machine; the artifact is RSA-OAEP-SHA256 ciphertext.
+            ssh "${ssh_options[@]}" "deploy@${VPS_HOST}" "bash /srv/petrolida-staging/run-staging-petrorun.sh --export-admin" |
+              openssl pkeyutl -encrypt -pubin -inkey "${RUNNER_TEMP}/recipient.pem" \
+                -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 \
+                -out "${RUNNER_TEMP}/staging-admin.enc"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: inputs.credentials_public_key != ''
+        with:
+          name: staging-admin-encrypted
+          path: ${{ runner.temp }}/staging-admin.enc
+          retention-days: 1
+          if-no-files-found: error
