@@ -1,0 +1,26 @@
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	handle /api/v1/master/* {
+		reverse_proxy nginx-cache:8080
+	}
+
+	handle /api/* {
+		reverse_proxy backend:8998
+	}
+
+	handle /go/* {
+		reverse_proxy backend:8998
+	}
+
+	handle {
+		reverse_proxy frontend:3000
+	}
+}
+
+www.petrolida.com {
+	redir https://petrolida.com{uri} permanent
+}
+
+# Optional staging routes, installed only on the shared VPS.
+import /etc/caddy/staging/*.caddy

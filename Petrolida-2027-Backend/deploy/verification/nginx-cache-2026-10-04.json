@@ -1,0 +1,55 @@
+{
+  "checks_passed": 17,
+  "checks": [
+    "division: MISS -> HIT",
+    "division/sub: MISS -> HIT",
+    "department: MISS -> HIT",
+    "faculty: MISS -> HIT",
+    "divisions: MISS -> HIT",
+    "subdivisions: MISS -> HIT",
+    "departments: MISS -> HIT",
+    "faculties: MISS -> HIT",
+    "Cookie: BYPASS",
+    "Authorization: BYPASS",
+    "Origin isolation and production CORS",
+    "/api/v1/health: direct routing",
+    "/api/v1/oprec-staff/config: direct routing",
+    "/: direct routing",
+    "admin session lookup: uncached authentication required",
+    "unknown master route: uncached 404",
+    "staging frontend and API healthy"
+  ],
+  "measurement": "VPS-local requests, seven samples; includes reading the response body",
+  "backend_median_ms": 18.85,
+  "cache_hit_median_ms": 1.28,
+  "backend_samples_ms": [
+    27.6,
+    20.19,
+    18.85,
+    18.2,
+    19.49,
+    18.5,
+    18.8
+  ],
+  "cache_samples_ms": [
+    1.28,
+    1.36,
+    1.22,
+    1.15,
+    1.51,
+    1.43,
+    1.19
+  ],
+  "verified_on": "2026-10-04",
+  "timezone": "Asia/Jakarta",
+  "site": "https://petrolida.com",
+  "cache_ttl_seconds": 900,
+  "activation": "Caddy configuration reload",
+  "configuration_backup": "/srv/petrolida/cache-backups/nginx-cache-setup-20261004-b41c7e",
+  "external_checks": {
+    "anonymous": "HIT",
+    "cookie": "BYPASS",
+    "authorization": "BYPASS",
+    "api_health": 200
+  }
+}

@@ -1,0 +1,9 @@
+[Unit]
+Description=Back up the Petrolida PostgreSQL database
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+User=deploy
+ExecStart=/srv/petrolida/backup.sh

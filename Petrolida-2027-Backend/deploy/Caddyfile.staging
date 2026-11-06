@@ -1,0 +1,13 @@
+staging.petrolida.com {
+    encode zstd gzip
+    header X-Robots-Tag "noindex, nofollow"
+    handle /api/* {
+        reverse_proxy staging-backend:8998
+    }
+    handle /go/* {
+        reverse_proxy staging-backend:8998
+    }
+    handle {
+        reverse_proxy staging-frontend:3000
+    }
+}
